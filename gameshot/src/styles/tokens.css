@@ -40,6 +40,16 @@
   --sys-color-severity-low: #ebd371;
   --sys-color-on-severity-low: #000000;
 
+  /* ---------- Color: risk tiers (recommendations) ---------- */
+  --sys-color-risk-low: #1d6b45;
+  --sys-color-risk-low-container: #e2f3e9;
+  --sys-color-risk-medium: #7a4f00;
+  --sys-color-risk-medium-container: #fcefd2;
+  --sys-color-risk-high: #a3240e;
+  --sys-color-risk-high-container: #fde4de;
+  --sys-color-info-container: #e8eefb;
+  --sys-color-on-info-container: #1f3a7a;
+
   /* ---------- Color: charts ---------- */
   --chart-categorical-1: #688ae8;
   --chart-categorical-2: #da7596;

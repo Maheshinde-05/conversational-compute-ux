@@ -24,7 +24,8 @@ so the address bar doesn't change between screens.
 | `/onboarding/executables` | Uploaded `4:123868`, `4:126669` | Search, sort, select-all with indeterminate state, launch arguments |
 | `/onboarding/compute` | Uploaded `4:129471` + modal `4:149060` | Recommended / Custom tabs; Continue opens **Create build** modal → creates build |
 | `/builds/:id/versions` | build list `4:132805` | Search, sort, select, delete; "Run game session" needs exactly one selected version |
-| `/builds/:id/optimize` | Optimization reco `4:145620` | Recommendation rail (select / scroll), Approve / Reject with undo, sortable tables |
+| `/builds/:id/optimize` | Optimization reco `4:145620` (redesigned) | AI recommendations with evidence, missing data, confidence, risk tier and approval route; approve per tier, reject with reason, roll back, re-analyze, change history |
+| `/builds/:id/policy` | *(new, not in Figma)* | Approval policy: auto-apply, cost limits, approvers, change windows, canary rules, expiry, with a live routing preview |
 | `/builds/:id/sessions/:sid` | build list `4:142873` | Back, session tiles, recommendation card → Optimize |
 
 `Sessions`, `Scale` and `Games` exist only as placeholders so the navigation works — they aren't in the ★ flow.
@@ -50,6 +51,13 @@ change in Figma maps to one line here.
 - Replace imports from `data/mock.ts` with fetch hooks; the shapes are typed in that file.
 - `OnboardingContext` holds the wizard's answers in memory, so a page refresh loses them. Persist a draft on the server when the API exists.
 - `TODO(design)` / `TODO(engineering)` comments mark the places that need a decision.
+
+## AI recommendations
+
+Sample recommendations live in `src/data/recommendations.ts`. Risk tier and approval route are **never stored**:
+`src/logic/riskPolicy.ts` computes them from each recommendation's facts and the team's policy. The model's suggested
+tier can raise the result, never lower it. State and the change history live in `src/state/RecommendationsContext.tsx`.
+Buttons marked "(demo)" stand in for other people or the scheduler.
 
 ## Known gaps / open questions
 - **Font:** Figma uses *Amazon Ember* (licensed, not bundled). The stack falls back to Inter → system UI.

@@ -8,6 +8,7 @@ import { BuildLayout } from './screens/build/BuildLayout';
 import { VersionsTab } from './screens/build/VersionsTab';
 import { SessionsTab } from './screens/build/SessionsTab';
 import { OptimizeTab } from './screens/build/OptimizeTab';
+import { PolicyTab } from './screens/build/PolicyTab';
 import { NotDesignedYet } from './screens/build/NotDesignedYet';
 import { SessionDetail } from './screens/build/SessionDetail';
 
@@ -18,7 +19,8 @@ import { SessionDetail } from './screens/build/SessionDetail';
  *   /onboarding/executables   Uploaded – "Tell us how to run your files" (step 2)
  *   /onboarding/compute       Uploaded – "Choose compute" + Create build modal (step 3)
  *   /builds/:id/versions      build list
- *   /builds/:id/optimize      Optimization reco
+ *   /builds/:id/optimize      Optimization reco (redesigned: evidence, risk, approval routing)
+ *   /builds/:id/policy        Approval policy (new; not in Figma yet)
  *   /builds/:id/sessions/:sid Session creation
  */
 export function App() {
@@ -38,6 +40,7 @@ export function App() {
           <Route path="versions" element={<VersionsTab />} />
           <Route path="sessions" element={<SessionsTab />} />
           <Route path="optimize" element={<OptimizeTab />} />
+          <Route path="policy" element={<PolicyTab />} />
           <Route path="scale" element={<NotDesignedYet what="Scale" />} />
         </Route>
         <Route path="/games" element={<NotDesignedYet what="Games" standalone />} />

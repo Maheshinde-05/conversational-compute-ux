@@ -10,9 +10,6 @@ export interface GameSession {
   startTime: string; endTime: string; ipAddress: string; port: number; location: string;
   currentPlayers: number; maxPlayers: number; logsUrl: string; fleet: string;
 }
-export interface Recommendation { id: string; sessionName: string; date: string; time: string }
-export interface InstanceIssue { id: string; computeName: string; location: string; capacity: string }
-export interface CpuSession { id: string; computeName: string; location: string; status: string }
 
 const GB = 1024 ** 3;
 const MB = 1024 ** 2;
@@ -58,25 +55,5 @@ export const sessions: GameSession[] = [
     logsUrl: 'https://us-east-1.console.aws.amazon.com/cloudwatch', fleet: 'fleet-xyz456',
   },
 ];
-
-// GET /builds/:id/recommendations
-export const recommendations: Recommendation[] = [
-  { id: 'r1', sessionName: 'game-session-1', date: 'Dec 29, 2025', time: '4:05 PM (UTC-5)' },
-  { id: 'r2', sessionName: 'game-session-2', date: 'Dec 28, 2025', time: '1:00 PM (UTC-5)' },
-  { id: 'r3', sessionName: 'game-session-test', date: 'Dec 27, 2025', time: '4:00 PM (UTC-5)' },
-  { id: 'r4', sessionName: 'game-session-test', date: 'Dec 27, 2025', time: '4:00 PM (UTC-5)' },
-  { id: 'r5', sessionName: 'game-session-test', date: 'Dec 27, 2025', time: '4:00 PM (UTC-5)' },
-  { id: 'r6', sessionName: 'game-session-test', date: 'Dec 27, 2025', time: '4:00 PM (UTC-5)' },
-];
-export const recommendationHistoryCount = 50;
-
-export const instanceIssues: InstanceIssue[] = [
-  { id: 'i1', computeName: 'C5.large', location: 'US-east-1', capacity: 'Overload' },
-  { id: 'i2', computeName: 'C4.2xlarge', location: 'US-west-1', capacity: 'Overload' },
-];
-
-export const cpuSessions: CpuSession[] = Array.from({ length: 5 }, (_, i) => ({
-  id: `c${i}`, computeName: 'i-0ad0f3de0170a89f2', location: 'US-east-1', status: 'Critical',
-}));
 
 export const formatBytes = (b: number) => (b >= GB ? `${Math.round(b / GB)}GB` : `${Math.round(b / MB)}MB`);

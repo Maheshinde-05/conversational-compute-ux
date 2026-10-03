@@ -1,11 +1,15 @@
-import { useState, type ReactNode } from 'react';
+import type { ReactNode } from 'react';
 import { useNavigate, useParams } from 'react-router-dom';
 import { ArrowLeft, Radar } from 'lucide-react';
 import { AppShell } from '../../components/AppShell';
+import { Badge } from '../../components/Badge';
 import { Button } from '../../components/Button';
 import { Card, InfoTile } from '../../components/Card';
 import { Gauge } from '../../components/Gauge';
 import { sessions } from '../../data/mock';
+import { TIER_LABELS } from '../../logic/riskPolicy';
+import { useRecommendations } from '../../state/RecommendationsContext';
+import { costLabel, tierTone } from './optimize/format';
 import shared from './Build.module.css';
 import styles from './SessionDetail.module.css';
 
@@ -13,7 +17,8 @@ export function SessionDetail() {
   const navigate = useNavigate();
   const { buildId = '', sessionId } = useParams();
   const s = sessions.find((x) => x.id === sessionId) ?? sessions[0];
-  const [decision, setDecision] = useState<'approved' | 'rejected' | null>(null);
+  const { recs } = useRecommendations();
+  const rec = recs.find((r) => r.id === 'rec-cpu') ?? recs[0];
 
   const tiles: [string, ReactNode][] = [
     ['Session ID', s.sessionId],
@@ -62,20 +67,15 @@ export function SessionDetail() {
             </div>
             <div className={styles.stack}>
               <span className={styles.small}>Recommendation</span>
-              <strong>Add 2vCPU per session</strong>
-              <span className={styles.link}>Cost $200</span>
+              <strong>{rec.summary}</strong>
+              <span className={styles.riskRow}>
+                <Badge tone={tierTone[rec.risk.tier]}>{TIER_LABELS[rec.risk.tier]}</Badge>
+                <span className={styles.small}>{costLabel(rec.facts.monthlyCostDelta)}</span>
+              </span>
             </div>
-            {decision ? (
-              <p role="status" className={styles.small}>
-                {decision === 'approved' ? 'Approved' : 'Rejected'} ·{' '}
-                <button type="button" className={styles.undo} onClick={() => setDecision(null)}>Undo</button>
-              </p>
-            ) : (
-              <div className={styles.actions}>
-                <Button variant="tonal" size="sm" onClick={() => setDecision('approved')}>Approve</Button>
-                <Button variant="tonal" size="sm" onClick={() => setDecision('rejected')}>Reject</Button>
-              </div>
-            )}
+            <Button variant="tonal" size="sm" onClick={() => navigate(`/builds/${encodeURIComponent(buildId)}/optimize`, { state: { recId: rec.id } })}>
+              Review recommendation
+            </Button>
           </div>
         </Card>
       </div>

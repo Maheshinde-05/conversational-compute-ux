@@ -35,6 +35,7 @@ export function BuildLayout() {
               { id: 'versions', label: 'Versions', to: `${base}/versions` },
               { id: 'sessions', label: 'Sessions', to: `${base}/sessions` },
               { id: 'optimize', label: 'Optimize', to: `${base}/optimize` },
+              { id: 'policy', label: 'Policy', to: `${base}/policy` },
               { id: 'scale', label: 'Scale', to: `${base}/scale` },
             ]}
           />

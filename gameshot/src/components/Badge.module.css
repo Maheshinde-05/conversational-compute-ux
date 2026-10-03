@@ -13,3 +13,7 @@
 .count    { background: var(--sys-color-accent-indigo); color: #fff; }
 .warning  { background: var(--sys-color-severity-low); color: var(--sys-color-on-severity-low); }
 .neutral  { background: var(--sys-color-tag-neutral); color: var(--sys-color-on-surface-variant); }
+.riskLow    { background: var(--sys-color-risk-low-container); color: var(--sys-color-risk-low); }
+.riskMedium { background: var(--sys-color-risk-medium-container); color: var(--sys-color-risk-medium); }
+.riskHigh   { background: var(--sys-color-risk-high-container); color: var(--sys-color-risk-high); }
+.info       { background: var(--sys-color-info-container); color: var(--sys-color-on-info-container); }

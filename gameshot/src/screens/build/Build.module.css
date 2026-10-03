@@ -42,6 +42,23 @@
   padding: var(--space-6) var(--page-gutter) var(--space-10);
 }
 
+@media (max-width: 640px) {
+  .topbar {
+    display: flex;
+    flex-wrap: wrap;
+    height: auto;
+    padding-block: var(--space-4);
+  }
+  .topbar > span:last-child { display: none; }
+  .breadcrumb {
+    min-width: 0;
+    font-size: var(--text-ui-sm);
+    overflow: hidden;
+    text-overflow: ellipsis;
+  }
+  .buildChip { height: 40px; }
+}
+
 .pageTitle {
   font-size: var(--text-heading-xl);
   font-weight: 400;
@@ -52,6 +69,8 @@
 
 .tabs {
   margin: var(--space-6) 0;
+  max-width: 100%;
+  overflow-x: auto;
 }
 
 .sectionTitle {

@@ -15,6 +15,8 @@ import { LaunchPlanEditor } from './screens/scale/LaunchPlanEditor';
 import { Simulation } from './screens/scale/Simulation';
 import { Guardrails } from './screens/scale/Guardrails';
 import { ScaleAudit } from './screens/scale/ScaleAudit';
+import { ScaleEvals } from './screens/scale/ScaleEvals';
+import { StudySession } from './screens/scale/StudySession';
 import { NotDesignedYet } from './screens/build/NotDesignedYet';
 import { SessionDetail } from './screens/build/SessionDetail';
 
@@ -54,6 +56,8 @@ export function App() {
             <Route path="simulate" element={<Simulation />} />
             <Route path="guardrails" element={<Guardrails />} />
             <Route path="audit" element={<ScaleAudit />} />
+            <Route path="evals" element={<ScaleEvals />} />
+            <Route path="evals/study" element={<StudySession />} />
           </Route>
         </Route>
         <Route path="/games" element={<NotDesignedYet what="Games" standalone />} />

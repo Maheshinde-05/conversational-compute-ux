@@ -7,6 +7,7 @@ Coded prototype of the ★ flow in the Figma file
 npm install
 npm run dev        # http://localhost:5173
 npm run build      # typecheck + production build
+npm run eval         # Scale agent evals on 18 golden traces (exits 1 if a safety gate fails) — see docs/EVALS.md
 npm run build:share  # self-contained pages → dist-share/gameshot.html and gameshot-mac.html (MacBook frame)
 ```
 
@@ -30,6 +31,8 @@ so the address bar doesn't change between screens.
 | `/builds/:id/scale/simulate` | *(new)* | Five scenarios run through `logic/scaleSim.ts`; shows when caps are hit, how long a person has to respond, queue/headroom/cost results |
 | `/builds/:id/scale/guardrails` | *(new)* | Limits and the three delegation tiers per action class |
 | `/builds/:id/scale/audit` | *(new)* | Every automated and human action, filterable by phase and decision |
+| `/builds/:id/scale/evals` | *(new, from the Eval framework)* | Scorecard, rollout gate, safety invariants, replay vs baselines, claim accuracy, reliability diagram, abstention, red team, trace viewer, human-study results, run history |
+| `/builds/:id/scale/evals/study` | *(new)* | Moderated pilot-study runner: comprehension quiz, 3 sound + 3 flawed cards, countdown card, guardrail and delegation questions |
 | `/builds/:id/policy` | *(new, not in Figma)* | Approval policy: auto-apply, cost limits, approvers, change windows, canary rules, expiry, with a live routing preview |
 | `/builds/:id/sessions/:sid` | build list `4:142873` | Back, session tiles, recommendation card → Optimize |
 

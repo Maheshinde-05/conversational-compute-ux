@@ -256,7 +256,7 @@ export const CARDS: Record<string, ScaleCard> = {
     whyNow: 'CCU is 61,000, 5× the plan, climbing ~1,300 per minute. Queue wait p95 is 54 s and rising ~3 s per minute.',
     change: { summary: '+80 in us-east-1, +36 in eu-west-1, +12 in ap-northeast-1', diff: [
       { region: 'us-east-1', before: 252, after: 332 }, { region: 'eu-west-1', before: 114, after: 150 }, { region: 'ap-northeast-1', before: 51, after: 63 } ] },
-    ifNothing: 'Queue wait p95 passes 90 s in about 12 minutes. About 2,100 players waiting at peak, average wait 2 min 10 s.',
+    ifNothing: 'Queue wait p95 passes 90 s in about 12 minutes. Players waiting at peak: likely thousands. The agent shows no exact number because its peak-waiting estimate hasn’t passed evals yet.',
     cost: { perHour: '+$128/hr', window: '~$450 for the expected 3.5 h', budgetNote: 'Takes spend to ~$545/hr, above your $500/hr max. Approving raises the launch-window budget to $900/hr until T+6h.' },
     playerImpact: 'Keeps about 19,000 players out of the queue at peak.',
     confidence: { level: 'medium', basis: 'Traffic shape matches 2 of 3 comparable launches.', signals: ['Live traffic', 'vCPU 94%', 'RAM 71%', 'Queue depth 1,400', 'Regional split 62/28/10'], missing: ['ap-northeast-1 queue depth (collector 4 min behind)'] },

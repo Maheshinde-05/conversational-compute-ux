@@ -7,6 +7,7 @@ const LINKS = [
   { to: 'simulate', label: 'Simulate' },
   { to: 'guardrails', label: 'Guardrails' },
   { to: 'audit', label: 'Audit log' },
+  { to: 'evals', label: 'Evals' },
 ];
 
 /** Scale Control: Plan → Simulate → Arm guardrails → Monitor → Intervene → Review. */

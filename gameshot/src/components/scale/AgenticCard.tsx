@@ -15,12 +15,17 @@ interface Props {
   onDecline: (reason: string) => void;
   onRollBack: () => void;
   onHold: () => void;
+  /** Study mode: collapse the evidence panel behind a toggle (A/B test). */
+  evidence?: 'shown' | 'collapsed';
+  onEvidenceOpen?: () => void;
+  /** Study mode: replaces the card's own actions. */
+  footer?: ReactNode;
 }
 
 const REASONS = ['Traffic will settle on its own', 'Too expensive', 'Wrong diagnosis', 'Handling it manually'];
 const TIER_LABEL = { auto: 'Tier 1 · Auto-execute', prepare: 'Tier 2 · Auto-prepare', human: 'Tier 3 · Human only' } as const;
 
-export function AgenticCard({ card, state, deadline, onApprove, onDecline, onRollBack, onHold }: Props) {
+export function AgenticCard({ card, state, deadline, onApprove, onDecline, onRollBack, onHold, evidence = 'shown', onEvidenceOpen, footer }: Props) {
   const now = useNow();
   const [declining, setDeclining] = useState(false);
   const [reason, setReason] = useState(REASONS[0]);
@@ -48,6 +53,22 @@ export function AgenticCard({ card, state, deadline, onApprove, onDecline, onRol
   const urgent = card.kind === 'approval' && open;
   const late = remaining !== null && remaining <= 0 && open && card.kind === 'approval';
 
+  const confidenceSection = (
+    <Section title={`Confidence: ${card.confidence.level}`}>
+      <p>{card.confidence.basis}</p>
+      {card.confidence.signals.length > 0 ? (
+        <ul className={styles.signals} aria-label="Signals used">
+          {card.confidence.signals.map((s) => <li key={s}>{s}</li>)}
+        </ul>
+      ) : (
+        <p className={styles.muted}>No signals listed.</p>
+      )}
+      {card.confidence.missing.map((m) => (
+        <p key={m} className={styles.missing}><AlertTriangle size={14} aria-hidden /> Missing: {m}</p>
+      ))}
+    </Section>
+  );
+
   const anatomy = (
     <>
       <Section title="Why now">{card.whyNow}</Section>
@@ -71,15 +92,12 @@ export function AgenticCard({ card, state, deadline, onApprove, onDecline, onRol
           </div>
         </div>
       )}
-      <Section title={`Confidence: ${card.confidence.level}`}>
-        <p>{card.confidence.basis}</p>
-        <ul className={styles.signals} aria-label="Signals used">
-          {card.confidence.signals.map((s) => <li key={s}>{s}</li>)}
-        </ul>
-        {card.confidence.missing.map((m) => (
-          <p key={m} className={styles.missing}><AlertTriangle size={14} aria-hidden /> Missing: {m}</p>
-        ))}
-      </Section>
+      {evidence === 'collapsed' ? (
+        <details className={styles.evidence} onToggle={(e) => (e.currentTarget as HTMLDetailsElement).open && onEvidenceOpen?.()}>
+          <summary>Show evidence (confidence and signals)</summary>
+          {confidenceSection}
+        </details>
+      ) : confidenceSection}
       <Section title={TIER_LABEL[card.route.tier]}>
         <p><strong>{card.route.label}.</strong> {card.route.detail}</p>
         {card.leadTime && <p className={styles.muted}>{card.leadTime}</p>}
@@ -151,7 +169,7 @@ export function AgenticCard({ card, state, deadline, onApprove, onDecline, onRol
         anatomy
       )}
 
-      <footer className={styles.foot}>
+      {footer ? <footer className={styles.foot}>{footer}</footer> : <footer className={styles.foot}>
         {state.status === 'executing' && (
           <div className={styles.progress} role="status">
             <span>{card.kind === 'auto_pending' ? 'Draining idle servers' : 'Provisioning instances'} · {state.progress}%</span>
@@ -200,7 +218,7 @@ export function AgenticCard({ card, state, deadline, onApprove, onDecline, onRol
             </div>
           </form>
         )}
-      </footer>
+      </footer>}
     </article>
   );
 }

@@ -101,3 +101,6 @@
 .decline legend { font-weight: 700; margin-bottom: var(--space-2); }
 .decline label { display: flex; align-items: center; gap: var(--space-2); cursor: pointer; }
 .decline .row { margin-top: var(--space-3); justify-content: flex-start; }
+.evidence { padding: var(--space-3); border: 1px dashed var(--sys-color-outline-variant); border-radius: var(--shape-md); }
+.evidence summary { cursor: pointer; color: var(--sys-color-link); }
+.evidence[open] summary { margin-bottom: var(--space-3); }

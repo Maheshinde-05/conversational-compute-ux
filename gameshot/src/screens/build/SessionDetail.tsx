@@ -1,0 +1,84 @@
+import { useState, type ReactNode } from 'react';
+import { useNavigate, useParams } from 'react-router-dom';
+import { ArrowLeft, Radar } from 'lucide-react';
+import { AppShell } from '../../components/AppShell';
+import { Button } from '../../components/Button';
+import { Card, InfoTile } from '../../components/Card';
+import { Gauge } from '../../components/Gauge';
+import { sessions } from '../../data/mock';
+import shared from './Build.module.css';
+import styles from './SessionDetail.module.css';
+
+export function SessionDetail() {
+  const navigate = useNavigate();
+  const { buildId = '', sessionId } = useParams();
+  const s = sessions.find((x) => x.id === sessionId) ?? sessions[0];
+  const [decision, setDecision] = useState<'approved' | 'rejected' | null>(null);
+
+  const tiles: [string, ReactNode][] = [
+    ['Session ID', s.sessionId],
+    ['Version', s.version],
+    ['Status', s.status],
+    ['Start time', s.startTime],
+    ['End time', s.endTime],
+    ['IP address', s.ipAddress],
+    ['Port', s.port],
+    ['Location', s.location],
+    ['Current players', s.currentPlayers],
+    ['Max players', s.maxPlayers],
+    ['Logs', <a href={s.logsUrl} target="_blank" rel="noreferrer" className={styles.logs}>{s.logsUrl}</a>],
+    ['Fleet', s.fleet],
+  ];
+
+  return (
+    <AppShell>
+      <header className={styles.topbar}>
+        <button type="button" className={styles.back} aria-label="Back to build" onClick={() => navigate(`/builds/${encodeURIComponent(buildId)}/versions`)}>
+          <ArrowLeft size={24} aria-hidden />
+        </button>
+        {/* TODO(design): what does Connect to host open? (CLI snippet, RDP, web console?) */}
+        <Button variant="warning">Connect to host</Button>
+      </header>
+
+      <div className={shared.content}>
+        <h1 className={shared.pageTitle}>{s.name}</h1>
+
+        <dl className={styles.grid}>
+          {tiles.map(([label, value]) => (
+            <InfoTile key={label} label={label} value={value} />
+          ))}
+        </dl>
+
+        <h2 className={`${shared.sectionTitle} ${styles.recTitle}`}>Optimization recommendations</h2>
+        <Card eyebrow="Optimize CPU usage" eyebrowIcon={<Radar size={16} aria-hidden />} className={styles.recCard}>
+          <div className={styles.recBody}>
+            <span className={styles.muted}>Nov 27, 2025</span>
+            <Gauge value={98} caption="Game servers in-use" size={120} />
+            <div className={styles.stack}>
+              <strong>Bottleneck detected</strong>
+              <a href={`/builds/${encodeURIComponent(buildId)}/optimize`} className={styles.link} onClick={(e) => { e.preventDefault(); navigate(`/builds/${encodeURIComponent(buildId)}/optimize`); }}>
+                View details
+              </a>
+            </div>
+            <div className={styles.stack}>
+              <span className={styles.small}>Recommendation</span>
+              <strong>Add 2vCPU per session</strong>
+              <span className={styles.link}>Cost $200</span>
+            </div>
+            {decision ? (
+              <p role="status" className={styles.small}>
+                {decision === 'approved' ? 'Approved' : 'Rejected'} ·{' '}
+                <button type="button" className={styles.undo} onClick={() => setDecision(null)}>Undo</button>
+              </p>
+            ) : (
+              <div className={styles.actions}>
+                <Button variant="tonal" size="sm" onClick={() => setDecision('approved')}>Approve</Button>
+                <Button variant="tonal" size="sm" onClick={() => setDecision('rejected')}>Reject</Button>
+              </div>
+            )}
+          </div>
+        </Card>
+      </div>
+    </AppShell>
+  );
+}

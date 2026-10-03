@@ -1,0 +1,17 @@
+.dots {
+  display: flex;
+  justify-content: center;
+  gap: 28px;
+}
+
+.dot,
+.active {
+  width: 8px;
+  height: 8px;
+  border-radius: 50%;
+  background: var(--sys-color-divider);
+}
+
+.active {
+  background: var(--sys-color-accent-indigo);
+}

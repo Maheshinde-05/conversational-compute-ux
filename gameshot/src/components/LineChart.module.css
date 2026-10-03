@@ -1,0 +1,36 @@
+.figure {
+  margin: 0;
+}
+
+.svg {
+  width: 100%;
+  height: auto;
+  overflow: visible;
+}
+
+.tick {
+  font-family: var(--font-data);
+  font-size: 12px;
+  fill: var(--sys-color-on-surface);
+}
+
+.legend {
+  display: flex;
+  gap: var(--space-4);
+  margin-top: var(--space-2);
+  font-family: var(--font-data);
+  font-size: 12px;
+  color: var(--sys-color-muted-foreground);
+}
+
+.legend span {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+}
+
+.legend i {
+  width: 12px;
+  height: 3px;
+  border-radius: 2px;
+}

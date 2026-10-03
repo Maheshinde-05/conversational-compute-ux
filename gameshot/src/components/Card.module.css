@@ -1,0 +1,77 @@
+.card {
+  background: #fff;
+  border: 1px solid var(--sys-color-divider);
+  border-radius: var(--shape-sm);
+  overflow: hidden;
+}
+
+.header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  height: 40px;
+  padding: 0 var(--space-3);
+  border-bottom: 1px solid var(--sys-color-divider);
+}
+
+.eyebrow {
+  display: inline-flex;
+  align-items: center;
+  gap: var(--space-2);
+  font-family: var(--font-data);
+  font-size: 14px;
+  color: var(--sys-color-muted-foreground);
+  text-transform: uppercase;
+}
+
+.body {
+  padding: var(--space-5) var(--space-6);
+}
+
+/* gradient border via background-clip trick */
+.highlight {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-2);
+  padding: var(--space-4);
+  min-height: 108px;
+  border: 2px solid transparent;
+  border-radius: var(--shape-xl);
+  background:
+    linear-gradient(#fff, #fff) padding-box,
+    var(--sys-gradient-highlight) border-box;
+}
+
+.highlightLabel {
+  font-size: var(--text-ui-sm);
+  color: var(--sys-color-on-surface);
+}
+
+.highlightValue {
+  font-size: var(--text-ui-sm);
+  color: var(--sys-color-on-surface-variant);
+}
+
+.info {
+  display: flex;
+  flex-direction: column;
+  gap: 2px;
+  padding: var(--space-4) var(--space-6);
+  border: 1px solid var(--sys-color-outline-variant);
+  border-radius: var(--shape-xl);
+  min-height: 80px;
+  justify-content: center;
+}
+
+.infoLabel {
+  font-size: var(--text-ui-md);
+  color: var(--sys-color-on-surface);
+}
+
+.infoValue {
+  font-size: var(--text-ui-sm);
+  color: var(--sys-color-on-surface-variant);
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}

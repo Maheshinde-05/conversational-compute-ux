@@ -1,0 +1,42 @@
+.tableCard {
+  margin-top: var(--space-4);
+}
+
+.tableTitle {
+  display: flex;
+  align-items: center;
+  height: 80px;
+  padding: 0 var(--space-6);
+  border-radius: var(--shape-xl) var(--shape-xl) 0 0;
+  background: var(--sys-color-surface-container-low);
+  font-size: var(--text-heading-lg);
+  font-weight: 400;
+}
+
+.search {
+  margin: var(--space-2) 0 var(--space-2);
+}
+
+.link {
+  color: var(--sys-color-link);
+}
+
+.addCustom {
+  margin-top: var(--space-4);
+}
+
+.argsCard {
+  margin-top: var(--space-3);
+  padding: var(--space-6);
+  border-radius: var(--shape-xl);
+  background: var(--sys-color-surface-container-low);
+}
+
+/* The Figma frame shows the field without a label; keep it for a11y but hide it. */
+.argsCard label {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  overflow: hidden;
+  clip: rect(0 0 0 0);
+}

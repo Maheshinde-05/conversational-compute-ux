@@ -1,0 +1,30 @@
+.gauge {
+  margin: 0 auto;
+  text-align: center;
+}
+
+.gauge svg {
+  display: block;
+}
+
+.label {
+  margin-top: -30px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  font-family: var(--font-data);
+}
+
+.label strong {
+  font-size: 24px;
+  line-height: 28px;
+  color: #18181b;
+}
+
+.label span {
+  margin-top: 2px;
+  white-space: nowrap;
+  font-size: var(--text-xs);
+  line-height: 16px;
+  color: var(--sys-color-muted-foreground);
+}

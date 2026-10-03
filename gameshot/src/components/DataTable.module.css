@@ -1,0 +1,57 @@
+.scroll {
+  overflow-x: auto;
+}
+
+.table {
+  width: 100%;
+  border-collapse: collapse;
+  font-size: var(--text-ui-md);
+}
+
+.table th,
+.table td {
+  height: 60px;
+  padding: 0 var(--space-4);
+  text-align: left;
+  border-bottom: 1px solid var(--sys-color-divider);
+  white-space: nowrap;
+}
+
+.table th {
+  font-weight: 700;
+  position: relative;
+}
+
+/* column dividers in the header, as drawn in Figma */
+.table th + th::before {
+  content: '';
+  position: absolute;
+  left: 0;
+  top: 18px;
+  bottom: 18px;
+  width: 1px;
+  background: var(--sys-color-outline-variant);
+}
+
+.table tbody tr:hover {
+  background: var(--sys-color-surface-container-low);
+}
+
+.leading {
+  width: 56px;
+}
+
+.sortBtn {
+  display: inline-flex;
+  align-items: center;
+  gap: var(--space-3);
+  padding: 0;
+  border: 0;
+  background: none;
+  font-weight: 700;
+  cursor: pointer;
+}
+
+.sortBtn svg {
+  color: var(--sys-color-on-surface-variant);
+}

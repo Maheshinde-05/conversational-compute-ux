@@ -1,0 +1,61 @@
+.button {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: var(--space-2);
+  border: 1px solid transparent;
+  font-size: var(--text-ui-sm);
+  line-height: var(--leading-ui-sm);
+  cursor: pointer;
+  white-space: nowrap;
+  transition: background-color 120ms ease, filter 120ms ease, box-shadow 120ms ease;
+}
+
+.button:disabled {
+  cursor: not-allowed;
+  opacity: 0.45;
+}
+
+/* sizes (heights from Figma: 32 / 40 / 44) */
+.sm { height: 32px; padding: 0 var(--space-4); border-radius: 10px; }
+.md { height: 40px; padding: 0 var(--space-4); border-radius: var(--shape-md); }
+.lg { height: 44px; padding: 0 var(--space-6); border-radius: var(--shape-button); }
+
+.fullWidth { width: 100%; }
+
+.primary {
+  background: var(--sys-color-primary-action);
+  color: #fff;
+}
+.primary:hover:not(:disabled) { filter: brightness(1.08); }
+
+.outline {
+  background: transparent;
+  border-color: var(--sys-color-outline);
+  color: var(--sys-color-on-surface-variant);
+}
+.outline:hover:not(:disabled) { background: rgb(34 63 73 / 0.06); }
+
+.tonal {
+  background: var(--sys-color-tertiary-container);
+  color: var(--sys-color-on-tertiary-container);
+}
+.tonal:hover:not(:disabled) { filter: brightness(0.96); }
+
+.neutral {
+  background: var(--sys-color-neutral-button);
+  color: var(--sys-color-on-surface);
+}
+.neutral:hover:not(:disabled) { filter: brightness(0.95); }
+
+.warning {
+  background: var(--sys-color-warning-button);
+  color: #000;
+}
+.warning:hover:not(:disabled) { filter: brightness(0.96); }
+
+.text {
+  background: transparent;
+  color: var(--sys-color-link-brand);
+}
+.text:hover:not(:disabled) { background: rgb(76 30 9 / 0.06); }

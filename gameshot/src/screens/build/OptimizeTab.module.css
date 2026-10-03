@@ -1,0 +1,219 @@
+/* rail */
+.railWrap {
+  display: flex;
+  align-items: center;
+  gap: var(--space-4);
+  margin: var(--space-6) 0;
+}
+
+.railArrow {
+  flex-shrink: 0;
+  display: grid;
+  place-items: center;
+  width: 40px;
+  height: 48px;
+  border: 0;
+  border-radius: var(--shape-sm);
+  background: transparent;
+  color: var(--sys-color-on-surface);
+  cursor: pointer;
+}
+
+.railArrow:hover {
+  background: var(--sys-color-surface-container-low);
+}
+
+.rail {
+  display: flex;
+  gap: var(--space-6);
+  overflow-x: auto;
+  scroll-snap-type: x mandatory;
+  scrollbar-width: none;
+  padding: 2px;
+}
+
+.recCard {
+  flex: 0 0 auto;
+  scroll-snap-align: start;
+  width: 160px;
+  display: flex;
+  flex-direction: column;
+  border: 1px solid var(--sys-color-divider);
+  border-radius: var(--shape-sm);
+  background: #fff;
+  padding: 0;
+  text-align: left;
+  cursor: pointer;
+  overflow: hidden;
+}
+
+.recCard:hover {
+  border-color: var(--sys-color-outline-variant);
+}
+
+.recActive {
+  background: var(--sys-color-selected-card);
+  border-color: #d8c7f5;
+}
+
+.recName {
+  height: 40px;
+  display: flex;
+  align-items: center;
+  padding: 0 var(--space-3);
+  border-bottom: 1px solid var(--sys-color-divider);
+  font-family: var(--font-data);
+  font-size: 14px;
+  color: var(--sys-color-muted-foreground);
+}
+
+.recTime {
+  padding: var(--space-3);
+  font-size: var(--text-xs);
+  line-height: 16px;
+  color: var(--sys-color-nav-label);
+  text-align: center;
+}
+
+/* summary row */
+.summary {
+  display: grid;
+  grid-template-columns: minmax(240px, 298px) minmax(360px, 1fr) minmax(320px, 444px);
+  gap: var(--space-6);
+  align-items: start;
+}
+
+@media (max-width: 1280px) {
+  .summary {
+    grid-template-columns: 1fr 1fr;
+  }
+  .diagnosis {
+    grid-column: 1 / -1;
+    order: 3;
+  }
+}
+
+.cpuBody {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: var(--space-4);
+}
+
+.date {
+  display: block;
+  font-family: var(--font-data);
+  font-size: 14px;
+  color: var(--sys-color-muted-foreground);
+  text-align: center;
+}
+
+.bottleneck {
+  font-family: var(--font-data);
+  font-size: 20px;
+  font-weight: 500;
+  color: var(--sys-color-foreground-strong);
+}
+
+.diagnosisText {
+  font-size: var(--text-body-lg);
+  line-height: 30px;
+  margin-bottom: var(--space-6);
+}
+
+.tableCard {
+  border: 1px solid var(--sys-color-outline-variant);
+  border-radius: var(--shape-xl);
+  overflow: hidden;
+}
+
+.tableHead {
+  display: flex;
+  align-items: center;
+  gap: var(--space-3);
+  height: 80px;
+  padding: 0 var(--space-5);
+  background: var(--sys-color-surface-container-low);
+}
+
+.tableHead h3 {
+  font-size: var(--text-heading-lg);
+  font-weight: 400;
+}
+
+.brandLink {
+  color: var(--sys-color-link-brand);
+}
+
+.recPanelBody {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-8);
+  padding: var(--space-3) 0 var(--space-6);
+}
+
+.recHeadline {
+  font-family: var(--font-data);
+  font-size: 32px;
+  font-weight: 600;
+  line-height: 38px;
+  text-align: center;
+  color: var(--sys-color-foreground-strong);
+}
+
+.recPanelRow {
+  display: grid;
+  grid-template-columns: 1fr auto;
+  gap: var(--space-6);
+  align-items: center;
+}
+
+.costLink {
+  font-family: var(--font-data);
+  font-size: 14px;
+  color: var(--sys-color-link);
+  text-decoration: none;
+}
+
+.decision {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-4);
+}
+
+.decisionBtn {
+  width: 116px;
+  font-size: var(--text-body-lg);
+  font-weight: 500;
+}
+
+.decisionStatus {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  font-size: var(--text-ui-sm);
+}
+
+/* drill-down */
+.drillTitle {
+  margin: var(--space-10) 0 var(--space-6);
+}
+
+.drill {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(380px, 1fr));
+  gap: var(--space-4);
+  max-width: 908px;
+  align-items: start;
+}
+
+.viewDetails {
+  font-family: var(--font-data);
+  font-size: 16px;
+  color: #18181b;
+  text-decoration: none;
+}
+
+.viewDetails:hover {
+  text-decoration: underline;
+}

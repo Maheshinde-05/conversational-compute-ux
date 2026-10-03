@@ -1,0 +1,13 @@
+.wrap {
+  display: inline-flex;
+  align-items: center;
+  cursor: pointer;
+}
+
+.box {
+  width: 16px;
+  height: 16px;
+  margin: 0;
+  accent-color: var(--sys-color-link);
+  cursor: pointer;
+}

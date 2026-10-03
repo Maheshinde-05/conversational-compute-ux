@@ -1,0 +1,118 @@
+.subtitle {
+  font-size: var(--text-ui-md);
+  color: var(--sys-color-on-surface-variant);
+}
+
+.tabs {
+  margin-top: var(--space-10);
+}
+
+.panel {
+  margin-top: var(--space-6);
+  border-radius: var(--shape-sm);
+  background: var(--sys-color-surface-container);
+}
+
+.panelHeader {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: var(--space-3);
+  height: 63px;
+  border-bottom: 1px solid var(--sys-color-divider);
+  color: var(--sys-color-muted-foreground);
+}
+
+.panelHeader h2 {
+  font-family: var(--font-data);
+  font-size: 20px;
+  font-weight: 400;
+}
+
+.panelBody {
+  padding: var(--space-6) 34px var(--space-8);
+}
+
+@media (max-width: 640px) {
+  .panelBody { padding: var(--space-5) var(--space-4) var(--space-6); }
+  .panelHeader h2 { font-size: var(--text-ui-md); }
+  .usage { line-height: 24px; }
+}
+
+.recommendation {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: var(--space-1);
+  text-align: center;
+}
+
+.recLabel {
+  font-size: var(--text-ui-sm);
+  color: var(--sys-color-nav-label);
+}
+
+.recSpec {
+  display: flex;
+  align-items: center;
+  gap: var(--space-2);
+}
+
+.recSpec strong {
+  font-family: var(--font-data);
+  font-size: 24px;
+  font-weight: 600;
+  color: var(--sys-color-foreground-strong);
+}
+
+.recConfidence {
+  font-family: var(--font-data);
+  font-size: var(--text-ui-sm);
+  font-weight: 500;
+  color: var(--sys-color-accent-indigo);
+}
+
+.tiles {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
+  gap: var(--space-4);
+  margin-top: var(--space-6);
+}
+
+.costLink {
+  font-family: var(--font-data);
+  font-size: 14px;
+  color: var(--sys-color-link);
+  text-decoration: none;
+}
+
+.costLink:hover {
+  text-decoration: underline;
+}
+
+.usageTitle {
+  margin-top: var(--space-6);
+  font-size: var(--text-body-lg);
+  font-weight: 700;
+  color: var(--sys-color-heading-muted);
+}
+
+.usage {
+  list-style: none;
+  margin: var(--space-3) 0 0;
+  padding: 0;
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-1);
+  font-size: var(--text-body-lg);
+  line-height: 28px;
+  color: var(--sys-color-heading-muted);
+}
+
+.placeholder {
+  display: grid;
+  place-items: center;
+  min-height: 300px;
+  color: var(--sys-color-muted-foreground);
+  border: 1px dashed var(--sys-color-outline-variant);
+}

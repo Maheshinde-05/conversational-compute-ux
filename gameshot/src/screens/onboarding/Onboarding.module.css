@@ -1,0 +1,55 @@
+/* Shared layout for the 3-step onboarding wizard */
+.page {
+  max-width: 945px;
+  margin: 0 auto;
+  padding: 120px var(--page-gutter) var(--space-10);
+}
+
+.narrow {
+  max-width: 796px;
+}
+
+.title {
+  font-size: var(--text-display);
+  font-weight: 400;
+  line-height: 44px;
+  color: var(--sys-color-heading-muted);
+}
+
+.subtitle {
+  margin-top: var(--space-3);
+  font-size: var(--text-ui-md);
+  color: var(--sys-color-on-surface-variant);
+}
+
+.sectionLabel {
+  display: block;
+  margin-top: var(--space-8);
+  font-size: var(--text-ui-sm);
+  font-weight: 700;
+  color: var(--sys-color-on-surface-variant);
+}
+
+.sectionHint {
+  font-size: var(--text-xs);
+  letter-spacing: var(--tracking-wide);
+  color: var(--sys-color-on-surface-variant);
+}
+
+.footer {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: var(--space-8);
+  margin-top: var(--space-10);
+}
+
+.continue {
+  width: 306px;
+  max-width: 100%;
+}
+
+@media (max-width: 640px) {
+  .page { padding-top: var(--space-10); }
+  .title { line-height: 34px; }
+}

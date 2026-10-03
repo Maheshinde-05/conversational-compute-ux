@@ -7,7 +7,11 @@ Coded prototype of the ★ flow in the Figma file
 npm install
 npm run dev        # http://localhost:5173
 npm run build      # typecheck + production build
+npm run build:share  # one self-contained page → dist-share/gameshot.html (for sharing as a link)
 ```
+
+Shareable link: https://claude.ai/artifact/46oWX71yc6nXUtnwufCWEo. The share build navigates in memory,
+so the address bar doesn't change between screens.
 
 **Stack:** Vite · React 18 · TypeScript · React Router 6 · CSS Modules · `lucide-react` (the icons used in Figma are Lucide).
 

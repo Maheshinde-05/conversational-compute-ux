@@ -1,5 +1,6 @@
 import { NavLink } from 'react-router-dom';
 import { AreaChart, FlaskConical } from 'lucide-react';
+import logoUrl from '../assets/logo.png?inline';
 import styles from './Sidebar.module.css';
 
 interface SidebarProps {
@@ -11,7 +12,7 @@ export function Sidebar({ showNav = true }: SidebarProps) {
   return (
     <aside className={styles.sidebar}>
       <div className={styles.inner}>
-      <img src="/logo.png" alt="GameShot" width={50} height={50} className={styles.logo} />
+      <img src={logoUrl} alt="GameShot" width={50} height={50} className={styles.logo} />
       {showNav && (
         <nav className={styles.nav} aria-label="Primary">
           <NavLink to="/builds/game-compute-start-1" className={({ isActive }) => cx(styles.item, isActive && styles.active)}>

@@ -1,0 +1,271 @@
+<title>GameShot on MacBook</title>
+<link rel="preconnect" href="https://fonts.googleapis.com" />
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+<link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Sans:wght@400;500;600&family=IBM+Plex+Mono:wght@400&display=swap" rel="stylesheet" />
+<style>
+  /* Layout: a quiet review stage — screen shortcuts on top, one MacBook Pro 14" centred below. */
+  :root {
+    --stage: #e8eaf0;
+    --stage-glow: #f6f7fb;
+    --ink: #1c1f2e;
+    --muted: #5d6273;
+    --chip: #ffffff;
+    --chip-line: #d3d6e0;
+    --accent: #5259e3;
+    --on-accent: #ffffff;
+    --floor-shadow: rgb(28 31 46 / 0.28);
+    --font-ui: 'IBM Plex Sans', -apple-system, 'Segoe UI', system-ui, sans-serif;
+    --font-mono: 'IBM Plex Mono', ui-monospace, 'SF Mono', Menlo, monospace;
+    --font-mac: -apple-system, BlinkMacSystemFont, 'Helvetica Neue', 'IBM Plex Sans', sans-serif;
+  }
+  @media (prefers-color-scheme: dark) {
+    :root:not([data-theme="light"]) {
+      --stage: #121319; --stage-glow: #1c1e28; --ink: #e9eaf2; --muted: #9a9fb2;
+      --chip: #1e2029; --chip-line: #30333f; --accent: #8a8fff; --on-accent: #0d0e14;
+      --floor-shadow: rgb(0 0 0 / 0.6); color-scheme: dark;
+    }
+  }
+  :root[data-theme="dark"] {
+    --stage: #121319; --stage-glow: #1c1e28; --ink: #e9eaf2; --muted: #9a9fb2;
+    --chip: #1e2029; --chip-line: #30333f; --accent: #8a8fff; --on-accent: #0d0e14;
+    --floor-shadow: rgb(0 0 0 / 0.6); color-scheme: dark;
+  }
+
+  * { box-sizing: border-box; }
+  body {
+    margin: 0;
+    min-height: 100%;
+    background: radial-gradient(ellipse 80% 60% at 50% 45%, var(--stage-glow), var(--stage) 70%) fixed, var(--stage);
+    color: var(--ink);
+    font-family: var(--font-ui);
+    font-size: 15px;
+  }
+  .page {
+    max-width: 1240px;
+    margin: 0 auto;
+    padding-inline: 16px;
+    padding-block: 28px 48px;
+    display: flex;
+    flex-direction: column;
+    gap: 28px;
+  }
+
+  header { display: flex; flex-wrap: wrap; align-items: end; justify-content: space-between; gap: 16px; }
+  h1 { margin: 0; font-size: 22px; font-weight: 600; letter-spacing: -0.2px; text-wrap: balance; }
+  .sub { margin: 4px 0 0; color: var(--muted); font-size: 14px; }
+
+  .jump { display: flex; flex-wrap: wrap; gap: 6px; align-items: center; }
+  .jump-label { font-size: 12px; text-transform: uppercase; letter-spacing: 0.08em; color: var(--muted); margin-right: 4px; }
+  .chip {
+    font: inherit; font-size: 13px;
+    height: 30px; padding: 0 12px;
+    border-radius: 15px;
+    border: 1px solid var(--chip-line);
+    background: var(--chip);
+    color: var(--ink);
+    cursor: pointer;
+  }
+  .chip:hover { border-color: var(--accent); }
+  .chip[aria-pressed="true"] { background: var(--accent); border-color: var(--accent); color: var(--on-accent); }
+  .chip:focus-visible, .tb-btn:focus-visible { outline: 2px solid var(--accent); outline-offset: 2px; }
+
+  /* ---------- MacBook Pro 14" (fixed object colours, same in both themes) ---------- */
+  .device-wrap { padding-inline: 6%; }
+  .device { width: 100%; max-width: 1080px; margin: 0 auto; }
+  .lid {
+    position: relative;
+    padding: 1.3% 1.3% 1.9%;
+    border-radius: 3.2% 3.2% 0.9% 0.9% / 5% 5% 1.4% 1.4%;
+    background: #0b0b0d;
+    box-shadow: inset 0 0 0 1.5px #3b3c42, inset 0 0 0 3px #0b0b0d, 0 0 0 1px #9b9da4;
+  }
+  .screen {
+    position: relative;
+    aspect-ratio: 1512 / 982;
+    overflow: hidden;
+    border-radius: 1.1% / 1.7%;
+    background: #000;
+  }
+  .notch {
+    position: absolute; z-index: 5; top: 0; left: 50%;
+    width: 12.5%; height: 3.3%;
+    transform: translateX(-50%);
+    background: #0b0b0d;
+    border-radius: 0 0 0.9vw 0.9vw;
+  }
+  .notch::after {
+    content: ''; position: absolute; top: 34%; left: 50%;
+    width: 0.55vw; max-width: 7px; aspect-ratio: 1; transform: translateX(-50%);
+    border-radius: 50%; background: radial-gradient(circle at 35% 35%, #2c3a55, #07080b 70%);
+  }
+  .base {
+    position: relative;
+    width: 113%; margin-left: -6.5%;
+    height: clamp(8px, 1.6vw, 18px);
+    border-radius: 0 0 48% 48% / 0 0 100% 100%;
+    background: linear-gradient(#f1f2f5 0%, #c9cbd1 38%, #a2a4ab 80%, #7d7f86 100%);
+  }
+  .base::before {
+    content: ''; position: absolute; top: 0; left: 50%; transform: translateX(-50%);
+    width: 15%; height: 48%;
+    border-radius: 0 0 0.8vw 0.8vw;
+    background: linear-gradient(#a9abb2, #d4d6db);
+  }
+  .floor {
+    height: 26px; margin: -6px auto 0; width: 96%;
+    background: radial-gradient(ellipse 50% 50% at 50% 0%, var(--floor-shadow), transparent 70%);
+  }
+
+  /* ---------- Virtual 1512×982 desktop, scaled to fit the screen ---------- */
+  .viewport {
+    position: absolute; top: 0; left: 0;
+    width: 1512px; height: 982px;
+    transform-origin: 0 0;
+    background: linear-gradient(135deg, #2b2f6b, #5a3f8f 45%, #c46a8a);
+    font-family: var(--font-mac);
+  }
+  .menubar {
+    height: 24px; padding: 0 14px;
+    display: flex; align-items: center; gap: 20px;
+    background: rgb(240 240 244 / 0.82);
+    backdrop-filter: blur(20px);
+    color: #111; font-size: 13px;
+  }
+  .menubar b { font-weight: 700; }
+  .menubar .right { margin-left: auto; display: flex; gap: 16px; align-items: center; font-variant-numeric: tabular-nums; }
+  .menubar svg { display: block; }
+  .window {
+    position: absolute; top: 24px; left: 0; right: 0; bottom: 0;
+    display: flex; flex-direction: column;
+    background: #fff;
+  }
+  .toolbar {
+    height: 52px; flex-shrink: 0;
+    display: grid; grid-template-columns: 1fr minmax(0, 560px) 1fr; align-items: center;
+    padding: 0 16px;
+    background: #f6f6f8;
+    border-bottom: 1px solid #dcdce0;
+  }
+  .tb-left { display: flex; align-items: center; gap: 18px; }
+  .lights { display: flex; gap: 8px; }
+  .lights i { width: 12px; height: 12px; border-radius: 50%; box-shadow: inset 0 0 0 0.5px rgb(0 0 0 / 0.15); }
+  .lights i:nth-child(1) { background: #ff5f57; }
+  .lights i:nth-child(2) { background: #febc2e; }
+  .lights i:nth-child(3) { background: #28c840; }
+  .tb-btn {
+    width: 30px; height: 26px; display: grid; place-items: center;
+    border: 0; border-radius: 6px; background: transparent; color: #55565c; cursor: pointer;
+  }
+  .tb-btn:hover { background: #e7e7eb; }
+  .url {
+    height: 32px; border-radius: 9px; background: #e9e9ee;
+    display: flex; align-items: center; justify-content: center; gap: 6px;
+    font-size: 13px; color: #2a2a2e; white-space: nowrap; overflow: hidden; text-overflow: ellipsis;
+  }
+  .url span { font-family: var(--font-mac); }
+  .url .path { color: #8a8a92; }
+  .app { flex: 1; width: 100%; border: 0; display: block; background: #fff; }
+
+  .hint { text-align: center; color: var(--muted); font-size: 13px; margin: 0; }
+  .hint code { font-family: var(--font-mono); font-size: 12px; }
+
+  @media (max-width: 640px) {
+    header { align-items: start; }
+    .device-wrap { padding-inline: 4%; }
+  }
+</style>
+
+<div class="page">
+  <header>
+    <div>
+      <h1>GameShot on MacBook</h1>
+      <p class="sub">Clickable GameLift onboarding and build console, shown at MacBook Pro 14″ size.</p>
+    </div>
+    <nav class="jump" aria-label="Jump to screen">
+      <span class="jump-label">Jump to</span>
+      <button class="chip" data-path="/onboarding/policy">Policy</button>
+      <button class="chip" data-path="/onboarding/upload">Upload</button>
+      <button class="chip" data-path="/onboarding/executables">Executables</button>
+      <button class="chip" data-path="/onboarding/compute">Compute</button>
+      <button class="chip" data-path="/builds/game-compute-start-1/versions">Versions</button>
+      <button class="chip" data-path="/builds/game-compute-start-1/optimize">Optimize</button>
+      <button class="chip" data-path="/builds/game-compute-start-1/sessions/game-session-1">Session</button>
+    </nav>
+  </header>
+
+  <div class="device-wrap">
+    <div class="device">
+      <div class="lid">
+        <div class="screen" id="screen">
+          <div class="notch" aria-hidden="true"></div>
+          <div class="viewport" id="viewport">
+            <div class="menubar" aria-hidden="true">
+              <b>Safari</b><span>File</span><span>Edit</span><span>View</span><span>History</span><span>Bookmarks</span><span>Window</span><span>Help</span>
+              <span class="right">
+                <svg width="18" height="13" viewBox="0 0 18 13" fill="none"><path d="M1 4.5a11.3 11.3 0 0 1 16 0M3.6 7.2a7.6 7.6 0 0 1 10.8 0M6.2 9.8a3.8 3.8 0 0 1 5.6 0" stroke="#111" stroke-width="1.6" stroke-linecap="round"/><circle cx="9" cy="12" r="1" fill="#111"/></svg>
+                <svg width="26" height="12" viewBox="0 0 26 12" fill="none"><rect x="0.5" y="0.5" width="22" height="11" rx="3" stroke="#111" opacity=".45"/><rect x="2" y="2" width="16" height="8" rx="1.6" fill="#111"/><rect x="23.5" y="4" width="1.6" height="4" rx=".8" fill="#111" opacity=".45"/></svg>
+                <span>Sat 3 Oct&nbsp;&nbsp;9:41 AM</span>
+              </span>
+            </div>
+            <div class="window">
+              <div class="toolbar">
+                <div class="tb-left">
+                  <div class="lights" aria-hidden="true"><i></i><i></i><i></i></div>
+                  <button class="tb-btn" id="back" aria-label="Back in prototype">
+                    <svg width="10" height="16" viewBox="0 0 10 16" fill="none"><path d="M8 2 2 8l6 6" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>
+                  </button>
+                  <button class="tb-btn" id="fwd" aria-label="Forward in prototype">
+                    <svg width="10" height="16" viewBox="0 0 10 16" fill="none"><path d="m2 2 6 6-6 6" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>
+                  </button>
+                </div>
+                <div class="url" aria-live="polite">
+                  <svg width="10" height="12" viewBox="0 0 10 12" fill="none" aria-hidden="true"><rect x="0.5" y="5" width="9" height="6.5" rx="1.5" fill="#6b6b73"/><path d="M2.5 5V3.5a2.5 2.5 0 0 1 5 0V5" stroke="#6b6b73" stroke-width="1.2"/></svg>
+                  <span>gameshot.app<span class="path" id="url-path"></span></span>
+                </div>
+                <div></div>
+              </div>
+              <iframe class="app" id="app" title="GameShot prototype"></iframe>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="base" aria-hidden="true"></div>
+      <div class="floor" aria-hidden="true"></div>
+    </div>
+  </div>
+
+  <p class="hint">Click inside the screen to use the prototype. Sample data only.</p>
+</div>
+
+<script>
+  const APP_B64 = '__APP_B64__';
+  const appHtml = new TextDecoder().decode(Uint8Array.from(atob(APP_B64), (c) => c.charCodeAt(0)));
+
+  const frame = document.getElementById('app');
+  const screen = document.getElementById('screen');
+  const viewport = document.getElementById('viewport');
+  const urlPath = document.getElementById('url-path');
+  const chips = [...document.querySelectorAll('.chip')];
+
+  function load(path) {
+    const start = '<script>window.__GAMESHOT_START__=' + JSON.stringify(path) + '<\/script>';
+    frame.srcdoc = appHtml.replace('<!--START-->', start);
+  }
+
+  function setActive(path) {
+    urlPath.textContent = path === '/' ? '' : path;
+    chips.forEach((c) => c.setAttribute('aria-pressed', String(path.startsWith(c.dataset.path))));
+  }
+
+  chips.forEach((c) => c.addEventListener('click', () => load(c.dataset.path)));
+  document.getElementById('back').addEventListener('click', () => frame.contentWindow?.postMessage({ type: 'gameshot:nav', delta: -1 }, '*'));
+  document.getElementById('fwd').addEventListener('click', () => frame.contentWindow?.postMessage({ type: 'gameshot:nav', delta: 1 }, '*'));
+  window.addEventListener('message', (e) => {
+    if (e.source === frame.contentWindow && e.data?.type === 'gameshot:route') setActive(e.data.path);
+  });
+
+  function fit() { viewport.style.transform = 'scale(' + screen.clientWidth / 1512 + ')'; }
+  new ResizeObserver(fit).observe(screen);
+  fit();
+  load('/onboarding/policy');
+</script>

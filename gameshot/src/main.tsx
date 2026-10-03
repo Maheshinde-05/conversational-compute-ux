@@ -5,15 +5,25 @@ import { App } from './App';
 import { OnboardingProvider } from './state/OnboardingContext';
 import './styles/global.css';
 
-// The shareable (artifact) build can't use URL paths, so it navigates in memory.
-const Router = import.meta.env.VITE_ROUTER === 'memory' ? MemoryRouter : BrowserRouter;
+declare global {
+  interface Window {
+    /** Set by the share/mac pages to open the prototype on a specific screen. */
+    __GAMESHOT_START__?: string;
+  }
+}
 
-createRoot(document.getElementById('root')!).render(
-  <StrictMode>
-    <Router>
-      <OnboardingProvider>
-        <App />
-      </OnboardingProvider>
-    </Router>
-  </StrictMode>,
+const app = (
+  <OnboardingProvider>
+    <App />
+  </OnboardingProvider>
 );
+
+// The shareable builds can't use URL paths, so they navigate in memory.
+const router =
+  import.meta.env.VITE_ROUTER === 'memory' ? (
+    <MemoryRouter initialEntries={[window.__GAMESHOT_START__ ?? '/']}>{app}</MemoryRouter>
+  ) : (
+    <BrowserRouter>{app}</BrowserRouter>
+  );
+
+createRoot(document.getElementById('root')!).render(<StrictMode>{router}</StrictMode>);

@@ -1,4 +1,5 @@
 import { Navigate, Route, Routes } from 'react-router-dom';
+import { FrameBridge } from './FrameBridge';
 import { PolicyScreen } from './screens/onboarding/PolicyScreen';
 import { UploadScreen } from './screens/onboarding/UploadScreen';
 import { ExecutablesScreen } from './screens/onboarding/ExecutablesScreen';
@@ -22,23 +23,26 @@ import { SessionDetail } from './screens/build/SessionDetail';
  */
 export function App() {
   return (
-    <Routes>
-      <Route path="/" element={<Navigate to="/onboarding/policy" replace />} />
-      <Route path="/onboarding/policy" element={<PolicyScreen />} />
-      <Route path="/onboarding/upload" element={<UploadScreen />} />
-      <Route path="/onboarding/executables" element={<ExecutablesScreen />} />
-      <Route path="/onboarding/compute" element={<ComputeScreen />} />
-
-      <Route path="/builds/:buildId/sessions/:sessionId" element={<SessionDetail />} />
-      <Route path="/builds/:buildId" element={<BuildLayout />}>
-        <Route index element={<Navigate to="versions" replace />} />
-        <Route path="versions" element={<VersionsTab />} />
-        <Route path="sessions" element={<SessionsTab />} />
-        <Route path="optimize" element={<OptimizeTab />} />
-        <Route path="scale" element={<NotDesignedYet what="Scale" />} />
-      </Route>
-      <Route path="/games" element={<NotDesignedYet what="Games" standalone />} />
-      <Route path="*" element={<Navigate to="/" replace />} />
-    </Routes>
+    <>
+      <FrameBridge />
+      <Routes>
+        <Route path="/" element={<Navigate to="/onboarding/policy" replace />} />
+        <Route path="/onboarding/policy" element={<PolicyScreen />} />
+        <Route path="/onboarding/upload" element={<UploadScreen />} />
+        <Route path="/onboarding/executables" element={<ExecutablesScreen />} />
+        <Route path="/onboarding/compute" element={<ComputeScreen />} />
+  
+        <Route path="/builds/:buildId/sessions/:sessionId" element={<SessionDetail />} />
+        <Route path="/builds/:buildId" element={<BuildLayout />}>
+          <Route index element={<Navigate to="versions" replace />} />
+          <Route path="versions" element={<VersionsTab />} />
+          <Route path="sessions" element={<SessionsTab />} />
+          <Route path="optimize" element={<OptimizeTab />} />
+          <Route path="scale" element={<NotDesignedYet what="Scale" />} />
+        </Route>
+        <Route path="/games" element={<NotDesignedYet what="Games" standalone />} />
+        <Route path="*" element={<Navigate to="/" replace />} />
+      </Routes>
+    </>
   );
 }

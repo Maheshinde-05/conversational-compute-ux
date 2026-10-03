@@ -1,0 +1,57 @@
+.chart {
+  position: relative;
+  min-width: 0;
+}
+
+.legend {
+  list-style: none;
+  margin: 0 0 var(--space-2);
+  padding: 0;
+  display: flex;
+  flex-wrap: wrap;
+  gap: var(--space-1) var(--space-4);
+  font-family: var(--font-data);
+  font-size: var(--text-xs);
+  color: var(--sys-color-heading-muted);
+}
+
+.legend li { display: inline-flex; align-items: center; gap: 6px; }
+
+.svg { display: block; overflow: visible; touch-action: pan-y; }
+.svg:focus-visible { outline: 2px solid var(--sys-color-accent-indigo); outline-offset: 4px; border-radius: 4px; }
+
+.tick { font-family: var(--font-data); font-size: 11px; fill: var(--sys-color-heading-muted); font-variant-numeric: tabular-nums; }
+.refLabel { font-family: var(--font-data); font-size: 11px; fill: var(--sys-color-on-surface-variant); }
+.endLabel { font-family: var(--font-data); font-size: 11px; font-weight: 600; fill: var(--sys-color-on-surface); }
+.now { font-family: var(--font-data); font-size: 11px; font-weight: 600; fill: var(--sys-color-on-surface); }
+
+.tooltip {
+  position: absolute;
+  z-index: 2;
+  min-width: 170px;
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+  padding: var(--space-2) var(--space-3);
+  border: 1px solid var(--sys-color-divider);
+  border-radius: var(--shape-sm);
+  background: var(--chart-surface);
+  box-shadow: 0 4px 12px rgb(0 0 0 / 0.08);
+  font-family: var(--font-data);
+  font-size: var(--text-xs);
+  pointer-events: none;
+}
+
+.tipX { color: var(--sys-color-heading-muted); }
+.tipRow { display: flex; align-items: center; gap: 6px; }
+.tipRow strong { font-size: 13px; color: var(--sys-color-on-surface); font-variant-numeric: tabular-nums; }
+.tipRow span { color: var(--sys-color-heading-muted); }
+.tipEvent { color: var(--sys-color-on-surface); font-weight: 600; }
+
+.table { margin-top: var(--space-2); font-size: var(--text-xs); }
+.table summary { cursor: pointer; color: var(--sys-color-link); width: max-content; }
+.tableScroll { max-height: 220px; overflow: auto; margin-top: var(--space-2); border: 1px solid var(--sys-color-divider); border-radius: var(--shape-sm); }
+.table table { border-collapse: collapse; width: 100%; font-variant-numeric: tabular-nums; }
+.table th, .table td { padding: 4px var(--space-3); text-align: right; border-bottom: 1px solid var(--sys-color-divider); white-space: nowrap; }
+.table th[scope='row'], .table thead th:first-child { text-align: left; }
+.table thead th { position: sticky; top: 0; background: var(--sys-color-surface-container-low); }

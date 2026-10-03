@@ -4,6 +4,7 @@ import { BrowserRouter, MemoryRouter } from 'react-router-dom';
 import { App } from './App';
 import { OnboardingProvider } from './state/OnboardingContext';
 import { RecommendationsProvider } from './state/RecommendationsContext';
+import { ScaleProvider } from './state/ScaleContext';
 import './styles/global.css';
 
 declare global {
@@ -16,7 +17,9 @@ declare global {
 const app = (
   <OnboardingProvider>
     <RecommendationsProvider>
-      <App />
+      <ScaleProvider>
+        <App />
+      </ScaleProvider>
     </RecommendationsProvider>
   </OnboardingProvider>
 );

@@ -9,6 +9,12 @@ import { VersionsTab } from './screens/build/VersionsTab';
 import { SessionsTab } from './screens/build/SessionsTab';
 import { OptimizeTab } from './screens/build/OptimizeTab';
 import { PolicyTab } from './screens/build/PolicyTab';
+import { ScaleLayout } from './screens/scale/ScaleLayout';
+import { ScaleDashboard } from './screens/scale/ScaleDashboard';
+import { LaunchPlanEditor } from './screens/scale/LaunchPlanEditor';
+import { Simulation } from './screens/scale/Simulation';
+import { Guardrails } from './screens/scale/Guardrails';
+import { ScaleAudit } from './screens/scale/ScaleAudit';
 import { NotDesignedYet } from './screens/build/NotDesignedYet';
 import { SessionDetail } from './screens/build/SessionDetail';
 
@@ -21,6 +27,7 @@ import { SessionDetail } from './screens/build/SessionDetail';
  *   /builds/:id/versions      build list
  *   /builds/:id/optimize      Optimization reco (redesigned: evidence, risk, approval routing)
  *   /builds/:id/policy        Approval policy (new; not in Figma yet)
+ *   /builds/:id/scale/*       Scale Control: live, plan, simulate, guardrails, audit (from the Scale spec)
  *   /builds/:id/sessions/:sid Session creation
  */
 export function App() {
@@ -41,7 +48,13 @@ export function App() {
           <Route path="sessions" element={<SessionsTab />} />
           <Route path="optimize" element={<OptimizeTab />} />
           <Route path="policy" element={<PolicyTab />} />
-          <Route path="scale" element={<NotDesignedYet what="Scale" />} />
+          <Route path="scale" element={<ScaleLayout />}>
+            <Route index element={<ScaleDashboard />} />
+            <Route path="plan" element={<LaunchPlanEditor />} />
+            <Route path="simulate" element={<Simulation />} />
+            <Route path="guardrails" element={<Guardrails />} />
+            <Route path="audit" element={<ScaleAudit />} />
+          </Route>
         </Route>
         <Route path="/games" element={<NotDesignedYet what="Games" standalone />} />
         <Route path="*" element={<Navigate to="/" replace />} />

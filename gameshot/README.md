@@ -25,6 +25,11 @@ so the address bar doesn't change between screens.
 | `/onboarding/compute` | Uploaded `4:129471` + modal `4:149060` | Recommended / Custom tabs; Continue opens **Create build** modal → creates build |
 | `/builds/:id/versions` | build list `4:132805` | Search, sort, select, delete; "Run game session" needs exactly one selected version |
 | `/builds/:id/optimize` | Optimization reco `4:145620` (redesigned) | AI recommendations with evidence, missing data, confidence, risk tier and approval route; approve per tier, reject with reason, roll back, re-analyze, change history |
+| `/builds/:id/scale` | *(new, from the Scale Control spec)* | Live launch dashboard with a launch-day replay (T−60m → T+24h): state banner, CCU vs plan with forecast band, headroom/queue/cost meters, region table, AI recommendation cards (quiet, auto-executed, approval with countdown, conflicting options, auto-pending scale-down), earned-delegation prompt, post-launch review |
+| `/builds/:id/scale/plan` | *(new)* | Launch plan editor: phases, expected curve (manual or AI-generated from comparable launches), capacity settings, projected cost, validation against guardrails, versioned arming |
+| `/builds/:id/scale/simulate` | *(new)* | Five scenarios run through `logic/scaleSim.ts`; shows when caps are hit, how long a person has to respond, queue/headroom/cost results |
+| `/builds/:id/scale/guardrails` | *(new)* | Limits and the three delegation tiers per action class |
+| `/builds/:id/scale/audit` | *(new)* | Every automated and human action, filterable by phase and decision |
 | `/builds/:id/policy` | *(new, not in Figma)* | Approval policy: auto-apply, cost limits, approvers, change windows, canary rules, expiry, with a live routing preview |
 | `/builds/:id/sessions/:sid` | build list `4:142873` | Back, session tiles, recommendation card → Optimize |
 

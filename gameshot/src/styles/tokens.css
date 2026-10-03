@@ -50,11 +50,22 @@
   --sys-color-info-container: #e8eefb;
   --sys-color-on-info-container: #1f3a7a;
 
+  /* ---------- Color: live scale states (quiet → urgent) ---------- */
+  --state-onplan: #1d6b45;
+  --state-onplan-container: #e2f3e9;
+  --state-diverging: #7a4f00;
+  --state-diverging-container: #fcefd2;
+  --state-critical: #a3240e;
+  --state-critical-container: #fde4de;
+
   /* ---------- Color: charts ---------- */
   --chart-categorical-1: #688ae8;
   --chart-categorical-2: #da7596;
   --chart-gauge-fill: #c33d69;
   --chart-gauge-track: #da7596;
+  --chart-surface: #ffffff;
+  --chart-grid: #e4e4e7;
+  --chart-reference: #5d6273;
 
   /* ---------- Typography ---------- */
   --font-ui: 'Amazon Ember', 'Inter', system-ui, -apple-system, 'Segoe UI', sans-serif;

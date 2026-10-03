@@ -1,0 +1,16 @@
+.tile { display: flex; flex-direction: column; gap: 6px; min-width: 0; padding: var(--space-4); border: 1px solid var(--sys-color-divider); border-radius: var(--shape-xl); background: #fff; }
+.label { font-size: var(--text-xs); font-weight: 700; letter-spacing: 0.06em; text-transform: uppercase; color: var(--sys-color-nav-label); }
+.value { font-size: 24px; line-height: 30px; font-weight: 600; color: var(--sys-color-on-surface); }
+.detail { font-size: var(--text-xs); color: var(--sys-color-heading-muted); }
+.track { position: relative; height: 8px; border-radius: 4px; overflow: visible; }
+.fill { display: block; height: 100%; border-radius: 4px; }
+.range { position: absolute; top: -3px; bottom: -3px; border: 2px solid var(--sys-color-on-surface); border-radius: 4px; }
+.limit { position: absolute; top: -4px; bottom: -4px; width: 2px; background: var(--sys-color-on-surface); }
+
+.onplan .track { background: var(--state-onplan-container); }
+.onplan .fill { background: var(--state-onplan); }
+.diverging .track { background: var(--state-diverging-container); }
+.diverging .fill { background: #c98a12; }
+.critical .track { background: var(--state-critical-container); }
+.critical .fill { background: var(--state-critical); }
+.critical .value { color: var(--state-critical); }
